@@ -49,8 +49,8 @@ public class CustomMetricsReporter implements InitializingBean {
     private String app;
 
     @Setter
-    @Value("custom.metrics.servers:\"\"")
-    private String servers;
+    @Value("custom.metrics.server:\"\"")
+    private String server;
 
     private String ip;
 
@@ -66,12 +66,12 @@ public class CustomMetricsReporter implements InitializingBean {
      *
      * @param bu business unit
      * @param app application name
-     * @param servers kafka server addresses
+     * @param server kafka server addresse
      */
-    public CustomMetricsReporter(String bu, String app, String servers) {
+    public CustomMetricsReporter(String bu, String app, String server) {
         this.bu = bu;
         this.app = app;
-        this.servers = servers;
+        this.server = server;
     }
 
     /**
@@ -111,7 +111,7 @@ public class CustomMetricsReporter implements InitializingBean {
         }
         try {
             Map<String, String> properties = new HashMap<>();
-            properties.put("bootstrap.servers", servers);
+            properties.put("bootstrap.servers", server);
             properties.put("acks", "1");
             properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
             properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");

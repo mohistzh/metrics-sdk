@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class LatencyReportBuilder {
 
-    private final String kafkaServer;
+    private final String server;
     private final String topic;
     private final LatencyStatsRegistry registry;
     private KafkaProducer<String,String> producer;
@@ -42,7 +42,7 @@ public class LatencyReportBuilder {
                                 Map<String, String> instanceTags) {
         this.registry = registry;
         this.topic = topic;
-        this.kafkaServer = kafkaServer;
+        this.server = kafkaServer;
         this.instanceTags = instanceTags;
 
         jsonConfig = new SerializeConfig();
@@ -54,14 +54,14 @@ public class LatencyReportBuilder {
 
     public void start(long period, TimeUnit timeUnit) {
         Map<String, String> properties = new HashMap<>();
-        properties.put("bootstrap.servers", String.format("%s", this.kafkaServer));
+        properties.put("bootstrap.servers", String.format("%s", this.server));
         properties.put("acks", "all");
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         try {
             producer = new KafkaProducer(properties);
         } catch (Exception e) {
-            log.error("Unable connect to kafka server: {}", this.kafkaServer, e);
+            log.error("Unable connect to kafka server: {}", this.server, e);
             return;
         }
 

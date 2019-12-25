@@ -19,7 +19,7 @@ public class MetricsReporter {
 
     public MetricsReporter(MetricsSdkProperties properties, MetricRegistry metricRegistry, Map<String, String> instanceTags) {
         reporter = new ReportBuilder(metricRegistry, MetricFilter.ALL, TimeUnit.SECONDS, TimeUnit.MILLISECONDS,
-                properties.getTopic(), properties.getKafkaServer(), instanceTags);
+                properties.getTopic(), properties.getServer(), instanceTags);
     }
 
 }

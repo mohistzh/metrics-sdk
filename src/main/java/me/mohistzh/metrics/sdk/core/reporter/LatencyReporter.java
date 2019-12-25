@@ -17,6 +17,6 @@ public class LatencyReporter {
 
     public LatencyReporter(MetricsSdkProperties properties, LatencyStatsRegistry latencyStatsRegistry, Map<String, String> instanceTags) {
 
-        reportBuilder = new LatencyReportBuilder(latencyStatsRegistry, properties.getTopic(), properties.getKafkaServer(), instanceTags);
+        reportBuilder = new LatencyReportBuilder(latencyStatsRegistry, properties.getTopic(), properties.getServer(), instanceTags);
     }
 }

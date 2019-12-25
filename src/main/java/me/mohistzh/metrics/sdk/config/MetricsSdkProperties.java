@@ -18,7 +18,7 @@ public class MetricsSdkProperties {
     private static final String DEFAULT_TOPIC = "metrics";
     private static final boolean DEFAULT_ENABLED = false;
 
-    private String kafkaServer;
+    private String server;
     private String topic = DEFAULT_TOPIC;
     private boolean enabled = DEFAULT_ENABLED;
     private List<String> clientUrls = Lists.newArrayList();
