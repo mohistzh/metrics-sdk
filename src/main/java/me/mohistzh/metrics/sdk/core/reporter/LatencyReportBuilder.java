@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * @Date 2019/12/25
  **/
 @Slf4j
-public class LatencyReporter {
+public class LatencyReportBuilder {
 
     private final String kafkaServer;
     private final String topic;
@@ -38,8 +38,8 @@ public class LatencyReporter {
     private final Map<String, String> instanceTags;
     private final ScheduledExecutorService executorService;
 
-    public LatencyReporter(LatencyStatsRegistry registry, String topic, String kafkaServer,
-                           Map<String, String> instanceTags) {
+    public LatencyReportBuilder(LatencyStatsRegistry registry, String topic, String kafkaServer,
+                                Map<String, String> instanceTags) {
         this.registry = registry;
         this.topic = topic;
         this.kafkaServer = kafkaServer;
